@@ -1,0 +1,1 @@
+key_chatgpt = "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"
