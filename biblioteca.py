@@ -38,7 +38,7 @@ def janela_menu():
             expand_x=True,
             expand_y=True,
             enable_click_events=True)],
-        [sg.Column([[sg.Button('Gerar Sinopse com ChatGPT', key="Gerar Sinopse"), sg.Button('Abrir GitHub', key="abrir_github")],[ sg.Text("Clique no livro e depois clique no botão de gerar a sinopse!", key="sinopse_gpt", expand_x=True, expand_y=True, size=(80, 10))]], justification='center')]       
+        [sg.Column([[sg.Button('Gerar Sinopse com ChatGPT', key="Gerar Sinopse"), sg.Button('Repositório do Projeto no GitHub', key="abrir_github")],[ sg.Text("Clique no livro e depois clique no botão de gerar a sinopse!", key="sinopse_gpt", expand_x=True, expand_y=True, size=(80, 10))]], justification='center')]       
         
     ]
     
@@ -222,6 +222,9 @@ while True:
     # Verifica se há uma célula clicada
         index = values[event][0]
         titulo_livro = rows[index][1]
+        
+    if window == janela1 and event == 'abrir_github':
+        abrir_link()
         
 
         # Obtém as coordenadas (linha, coluna) da célula clicada
