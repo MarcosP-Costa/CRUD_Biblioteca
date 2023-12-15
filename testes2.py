@@ -1,6 +1,7 @@
-minha_variavel = "a"
+import webbrowser
 
-if not isinstance(minha_variavel, int):
-    print("A variável é do tipo inteiro.")
-else:
-    print("A variável não é do tipo inteiro.")
+# URL que você deseja abrir
+url = "https://github.com/MarcosP-Costa"
+
+# Abrir o navegador padrão com a URL fornecida
+#abrir_github = webbrowser.open(url)

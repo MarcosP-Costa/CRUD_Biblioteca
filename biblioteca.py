@@ -1,12 +1,29 @@
 import PySimpleGUI as sg
 import sqlite3
+import webbrowser
+import chatgpt
 
+
+def abrir_link():
+    # URL que você deseja abrir
+    url = "https://github.com/MarcosP-Costa"
+
+    # Abrir o navegador padrão com a URL fornecida
+    webbrowser.open(url)
+
+rows = []
+
+def gerarSinopse(titulo_livro):
+    if titulo_livro == "":
+        return("Selecione um livro antes!")
+    else:
+        return(chatgpt.gerarTexto(titulo_livro))
 
 def janela_menu():
     sg.theme('Dark')
     toprow = ['ID', 'Titulo', "Autor", "Ano de Publicação"]
     me_de_imagens = sg.Image(filename="./img/LIVRARIABanner.png")
-    #rows = [id_livro, titulo_livro, autor_livro, ano_livro]
+    global rows 
     rows = listar_livros(ler_livros())
     layout = [
         [sg.Column([[me_de_imagens]], justification='center')],
@@ -21,7 +38,7 @@ def janela_menu():
             expand_x=True,
             expand_y=True,
             enable_click_events=True)],
-        [sg.Column([[sg.Button('Gerar Sinopse')]], justification='center')]
+        [sg.Column([[sg.Button('Gerar Sinopse com ChatGPT', key="Gerar Sinopse"), sg.Button('Abrir GitHub', key="abrir_github")],[ sg.Text("Clique no livro e depois clique no botão de gerar a sinopse!", key="sinopse_gpt", expand_x=True, expand_y=True, size=(80, 10))]], justification='center')]       
         
     ]
     
@@ -150,7 +167,7 @@ def atualizar_livro(livro_id, novo_titulo, novo_autor, novo_ano):
     
 #Janela Criada
 janela1, janela2, janela3 = janela_menu(), None, None
-
+titulo_livro = ""
 while True:
     window, event, values = sg.read_all_windows()
     # Quando a janela for fechada
@@ -190,7 +207,7 @@ while True:
         
 
     if window == janela1 and event == 'Gerar Sinopse':
-        janela2 = sinopse()
+        window['sinopse_gpt'].update(gerarSinopse(titulo_livro=titulo_livro))
     if window == janela2 and event == 'Salvar':
         nome = values['nome']
         autor = values['autor']
@@ -201,12 +218,17 @@ while True:
             inserir_livro(titulo=nome,autor=autor,ano_publicacao=ano)
             janela3 = janela_inf("Livro Adicionado com Sucesso!", "Sucesso")
             
+    if window == janela1 and event == '-TABLE-':
+    # Verifica se há uma célula clicada
+        index = values[event][0]
+        titulo_livro = rows[index][1]
+        
 
+        # Obtém as coordenadas (linha, coluna) da célula clicada
 
-    
+        # Aqui você pode realizar qualquer ação com o valor da célula clicada
+        # Exemplo: abrir uma janela com mais detalhes ou fazer algo com o valor
 
-    # Quando queremos voltar para a janela anterior
-# Lógica de o que deve acontecer ao clicar os botões
 
 
 #Botão de Sinopse DESABILITADO caso o cidadão n tenha nada clicado
