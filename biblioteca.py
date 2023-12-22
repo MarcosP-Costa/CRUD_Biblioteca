@@ -227,11 +227,3 @@ while True:
         abrir_link()
         
 
-        # Obtém as coordenadas (linha, coluna) da célula clicada
-
-        # Aqui você pode realizar qualquer ação com o valor da célula clicada
-        # Exemplo: abrir uma janela com mais detalhes ou fazer algo com o valor
-
-
-
-#Botão de Sinopse DESABILITADO caso o cidadão n tenha nada clicado

@@ -1,10 +1,11 @@
 import requests
 import json
+import pass_w
 
 
 def gerarTexto(livro):
     try:
-        key_chatgpt = "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"
+        key_chatgpt = pass_w.key_chatgpt
         headers = {"Authorization": f"Bearer {key_chatgpt}", "Content-Type": "application/json"}
         link = "https://api.openai.com/v1/chat/completions"
         modelo = "gpt-3.5-turbo"
@@ -16,13 +17,11 @@ def gerarTexto(livro):
         requisicao = requests.post(link, headers=headers, data=body)
         resposta = requisicao.json()
         sinopse = resposta["choices"][0]["message"]["content"]
+        print(sinopse)
         return sinopse
     except:
-        print("Chave API Esta fora no momento!")
         return "Chave API Esta fora no momento!"
     
-
-
 
 
 

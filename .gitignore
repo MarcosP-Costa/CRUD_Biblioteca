@@ -9,6 +9,7 @@ env/
 CRUD_Biblioteca/
 Scripts/
 
+
 # Logs e arquivos temporários
 *.log
 *.tmp
