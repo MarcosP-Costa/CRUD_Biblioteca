@@ -18,9 +18,9 @@ def gerarTexto(livro):
         sinopse = resposta["choices"][0]["message"]["content"]
         return sinopse
     except:
+        print("Chave API Esta fora no momento!")
         return "Chave API Esta fora no momento!"
     
-
 
 
 
